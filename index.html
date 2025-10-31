@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activación CronosTime</title>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const client = params.get('client') || "Cliente";
+            const days = params.get('days') || "30";
+            const key = params.get('key') || "SIN-CLAVE";
+
+            // Crea el Deep Link personalizado
+            const deepLink = `cronostime://activate?client=${client}&days=${days}&key=${key}`;
+            
+            // Redirige automáticamente
+            window.location.href = deepLink;
+
+            // Mensaje alternativo por si no se abre automáticamente
+            document.getElementById("mensaje").innerHTML =
+                `<h2>🔗 Activando CronosTime...</h2>
+                 <p>Si no se abre automáticamente, haz clic aquí:</p>
+                 <a href="${deepLink}">${deepLink}</a>`;
+        };
+    </script>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:100px;">
+    <div id="mensaje">
+        <h2>Preparando activación...</h2>
+    </div>
+</body>
+</html>
+
